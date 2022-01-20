@@ -129,6 +129,12 @@ namespace Client
                 this.presence.state = "Connected to GERMANY SERVER";
                 this.presence.largeImageKey = "1024x1024";
                 this.presence.largeImageText = "VPN Client by GGS-Network";
+                this.presence.startTimestamp = 1507665886;
+                this.presence.endTimestamp = 1507665886;
+                this.presence.partySize = 1;
+                this.presence.partyMax = 1;
+                this.presence.partyId = "ae488379-351d-4a4f-ad32-2b9b01c91657";
+                this.presence.joinSecret = "MTI4NzM0OjFpMmhuZToxMjMxMjM= ";
                 DiscordRpc.UpdatePresence(ref this.presence);
             }
             catch(Exception ex)
