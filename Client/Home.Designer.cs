@@ -35,7 +35,6 @@
             this.btn_deleteOVPN = new MetroFramework.Controls.MetroButton();
             this.btn_tap6 = new MetroFramework.Controls.MetroButton();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.btn_winTUN = new MetroFramework.Controls.MetroButton();
             this.btn_ovpngui = new MetroFramework.Controls.MetroButton();
             this.btn_cache = new MetroFramework.Controls.MetroButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -85,7 +84,7 @@
             // btn_tap6
             // 
             this.btn_tap6.Location = new System.Drawing.Point(11, 60);
-            this.btn_tap6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_tap6.Margin = new System.Windows.Forms.Padding(2);
             this.btn_tap6.Name = "btn_tap6";
             this.btn_tap6.Size = new System.Drawing.Size(222, 29);
             this.btn_tap6.TabIndex = 5;
@@ -102,16 +101,6 @@
             this.metroLabel1.TabIndex = 6;
             this.metroLabel1.Text = "System:";
             this.metroLabel1.Theme = MetroFramework.MetroThemeStyle.Dark;
-            // 
-            // btn_winTUN
-            // 
-            this.btn_winTUN.Location = new System.Drawing.Point(11, 94);
-            this.btn_winTUN.Name = "btn_winTUN";
-            this.btn_winTUN.Size = new System.Drawing.Size(222, 29);
-            this.btn_winTUN.TabIndex = 7;
-            this.btn_winTUN.Text = "Add WinTUN Network Tunnel";
-            this.btn_winTUN.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.btn_winTUN.Click += new System.EventHandler(this.btn_winTUN_Click);
             // 
             // btn_ovpngui
             // 
@@ -140,7 +129,6 @@
             this.ClientSize = new System.Drawing.Size(758, 406);
             this.Controls.Add(this.btn_cache);
             this.Controls.Add(this.btn_ovpngui);
-            this.Controls.Add(this.btn_winTUN);
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.btn_tap6);
             this.Controls.Add(this.btn_deleteOVPN);
@@ -168,7 +156,6 @@
         private MetroFramework.Controls.MetroButton btn_deleteOVPN;
         private MetroFramework.Controls.MetroButton btn_tap6;
         private MetroFramework.Controls.MetroLabel metroLabel1;
-        private MetroFramework.Controls.MetroButton btn_winTUN;
         private MetroFramework.Controls.MetroButton btn_ovpngui;
         private MetroFramework.Controls.MetroButton btn_cache;
     }

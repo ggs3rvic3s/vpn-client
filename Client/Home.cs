@@ -30,6 +30,24 @@ namespace Client
             btn_deleteOVPN.Visible = false;
             btn_Connect.Visible = true;
             btn_Disconnect.Visible = false;
+            if (File.Exists($@"AddTAP6.bat") && File.Exists($@"TAP-control.exe"))
+            {
+
+            }
+            else
+            {
+                try
+                {
+
+                    WebClient webClient = new WebClient();
+                    webClient.DownloadFile("https://assets.ggs-network.de/download.php?path=TAP-control.exe", $@"TAP-control.exe");
+                    webClient.DownloadFile("https://assets.ggs-network.de/download.php?path=AddTAP6.bat", $@"AddTAP6.bat");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
             if (File.Exists(@"C:\Program Files (x86)\OVPN-Driver\OpenVPN\bin\openvpn.exe"))
             {
                 btn_deleteOVPN.Visible = true;
@@ -189,9 +207,7 @@ namespace Client
                 Process process = new Process();
                 ProcessStartInfo startInfo = new ProcessStartInfo();
                 startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                startInfo.FileName = @"C:\Program Files (x86)\OVPN-Driver\OpenVPN\bin\tapctl.exe";
-                startInfo.Arguments = "create --hwid root\tap0901";
-                startInfo.Verb = "runas";
+                startInfo.FileName = @"TAP-control.bat";
                 process.StartInfo = startInfo;
                 process.Start();
                 MessageBox.Show("TAP6 Virtual Network Adapter was succesful add!", "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -201,27 +217,6 @@ namespace Client
                 MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void btn_winTUN_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Process process = new Process();
-                ProcessStartInfo startInfo = new ProcessStartInfo();
-                startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                startInfo.FileName = @"C:\Program Files (x86)\OVPN-Driver\OpenVPN\bin\tapctl.exe";
-                startInfo.Arguments = "create --hwid wintun";
-                startInfo.Verb = "runas";
-                process.StartInfo = startInfo;
-                process.Start();
-                MessageBox.Show("WinTUN Network Tunnel was succesful add!", "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void btn_ovpngui_Click(object sender, EventArgs e)
         {
             try
