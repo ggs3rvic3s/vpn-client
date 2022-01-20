@@ -11,6 +11,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DiscordRpcInjection;
 
 namespace Client
 {
@@ -19,6 +20,8 @@ namespace Client
         string username;
         string password;
         string sysUsername = Environment.UserName;
+        private DiscordRpc.EventHandlers handlers;
+        private DiscordRpc.RichPresence presence;
         public Login()
         {
             InitializeComponent();
@@ -44,6 +47,37 @@ namespace Client
             else
             {
                 btn_logincache.Visible = false;
+            }
+            if(File.Exists("discord-rpc-w32.dll"))
+            {
+                this.handlers = default(DiscordRpc.EventHandlers);
+                DiscordRpc.Initialize("854090411140579339", ref this.handlers, true, null);
+                this.handlers = default(DiscordRpc.EventHandlers);
+                DiscordRpc.Initialize("854090411140579339", ref this.handlers, true, null);
+                this.presence.details = "Login - VPN Client";
+                this.presence.largeImageKey = "1024x1024";
+                this.presence.largeImageText = "VPN Client by GGS-Network";
+                DiscordRpc.UpdatePresence(ref this.presence);
+            }
+            else
+            {
+                try
+                {
+                    WebClient webClient = new WebClient();
+                    webClient.DownloadFile("https://assets.ggs-network.de/download.php?path=discord-rpc-w32.dll", "discord-rpc-w32.dll");
+                    this.handlers = default(DiscordRpc.EventHandlers);
+                    DiscordRpc.Initialize("854090411140579339", ref this.handlers, true, null);
+                    this.handlers = default(DiscordRpc.EventHandlers);
+                    DiscordRpc.Initialize("854090411140579339", ref this.handlers, true, null);
+                    this.presence.details = "Login - VPN Client";
+                    this.presence.largeImageKey = "1024x1024";
+                    this.presence.largeImageText = "VPN Client by GGS-Network";
+                    DiscordRpc.UpdatePresence(ref this.presence);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
         private void btn_login_Click(object sender, EventArgs e)

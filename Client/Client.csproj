@@ -26,8 +26,8 @@
     <InstallUrl>https://assets.ggs-network.de/</InstallUrl>
     <UpdateUrl>https://assets.ggs-network.de/</UpdateUrl>
     <PublisherName>VPN Client</PublisherName>
-    <ApplicationRevision>6</ApplicationRevision>
-    <ApplicationVersion>3.1.0.%2a</ApplicationVersion>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>3.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>

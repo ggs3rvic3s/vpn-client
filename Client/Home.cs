@@ -10,6 +10,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DiscordRpcInjection;
 
 namespace Client
 {
@@ -17,6 +18,8 @@ namespace Client
     {
         public bool connected;
         string sysUsername = Environment.UserName;
+        private DiscordRpc.EventHandlers handlers;
+        private DiscordRpc.RichPresence presence;
         public Home()
         {
             InitializeComponent();
@@ -79,6 +82,14 @@ namespace Client
                     MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            this.handlers = default(DiscordRpc.EventHandlers);
+            DiscordRpc.Initialize("854090411140579339", ref this.handlers, true, null);
+            this.handlers = default(DiscordRpc.EventHandlers);
+            DiscordRpc.Initialize("854090411140579339", ref this.handlers, true, null);
+            this.presence.details = "Home - VPN Client";
+            this.presence.largeImageKey = "1024x1024";
+            this.presence.largeImageText = "VPN Client by GGS-Network";
+            DiscordRpc.UpdatePresence(ref this.presence);
         }
 
         private void btn_Connect_Click(object sender, EventArgs e)
@@ -114,6 +125,11 @@ namespace Client
                 startInfo.Verb = "runas";
                 process.StartInfo = startInfo;
                 process.Start();
+                this.presence.details = "Home - VPN Client";
+                this.presence.state = "Connected to GERMANY SERVER";
+                this.presence.largeImageKey = "1024x1024";
+                this.presence.largeImageText = "VPN Client by GGS-Network";
+                DiscordRpc.UpdatePresence(ref this.presence);
             }
             catch(Exception ex)
             {
@@ -135,6 +151,11 @@ namespace Client
                 process.StartInfo = startInfo;
                 process.Start();
                 File.Delete($@"{Directory.GetCurrentDirectory()}\client.ovpn");
+                this.presence.details = "Home - VPN Client";
+                this.presence.state = "Disconnected";
+                this.presence.largeImageKey = "1024x1024";
+                this.presence.largeImageText = "VPN Client by GGS-Network";
+                DiscordRpc.UpdatePresence(ref this.presence);
             }
             catch (Exception ex)
             {
