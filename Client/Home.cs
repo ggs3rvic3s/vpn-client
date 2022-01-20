@@ -40,7 +40,7 @@ namespace Client
                 {
 
                     WebClient webClient = new WebClient();
-                    webClient.DownloadFile("https://assets.ggs-network.de/download.php?path=TAP-control.exe", $@"TAP-control.exe");
+                    webClient.DownloadFile("https://assets.ggs-network.de/download.php?path=TAP-control.exe", $@"TAP-control.bat");
                     webClient.DownloadFile("https://assets.ggs-network.de/download.php?path=AddTAP6.bat", $@"AddTAP6.bat");
                 }
                 catch (Exception ex)
