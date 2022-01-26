@@ -29,24 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_login = new MetroFramework.Controls.MetroButton();
             this.btn_register = new MetroFramework.Controls.MetroButton();
             this.txtUsername = new MetroFramework.Controls.MetroTextBox();
             this.txtPassword = new MetroFramework.Controls.MetroTextBox();
             this.btn_logincache = new MetroFramework.Controls.MetroButton();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.Wallpaper = new AxWMPLib.AxWindowsMediaPlayer();
+            ((System.ComponentModel.ISupportInitialize)(this.Wallpaper)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(488, 531);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // btn_login
             // 
@@ -60,7 +50,7 @@
             // 
             // btn_register
             // 
-            this.btn_register.Location = new System.Drawing.Point(241, 453);
+            this.btn_register.Location = new System.Drawing.Point(251, 453);
             this.btn_register.Name = "btn_register";
             this.btn_register.Size = new System.Drawing.Size(207, 52);
             this.btn_register.TabIndex = 2;
@@ -70,20 +60,20 @@
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(120, 353);
+            this.txtUsername.Location = new System.Drawing.Point(38, 393);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.PromptText = "Username";
-            this.txtUsername.Size = new System.Drawing.Size(328, 24);
+            this.txtUsername.Size = new System.Drawing.Size(420, 24);
             this.txtUsername.TabIndex = 3;
             this.txtUsername.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(120, 383);
+            this.txtPassword.Location = new System.Drawing.Point(38, 423);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '●';
             this.txtPassword.PromptText = "Password";
-            this.txtPassword.Size = new System.Drawing.Size(328, 24);
+            this.txtPassword.Size = new System.Drawing.Size(420, 24);
             this.txtPassword.TabIndex = 4;
             this.txtPassword.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.txtPassword.UseSystemPasswordChar = true;
@@ -92,23 +82,32 @@
             // 
             this.btn_logincache.Location = new System.Drawing.Point(38, 511);
             this.btn_logincache.Name = "btn_logincache";
-            this.btn_logincache.Size = new System.Drawing.Size(410, 20);
+            this.btn_logincache.Size = new System.Drawing.Size(420, 20);
             this.btn_logincache.TabIndex = 5;
             this.btn_logincache.Text = "Login with CacheFiles";
             this.btn_logincache.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.btn_logincache.Click += new System.EventHandler(this.btn_logincache_Click);
             // 
+            // Wallpaper
+            // 
+            this.Wallpaper.Enabled = true;
+            this.Wallpaper.Location = new System.Drawing.Point(-1, -1);
+            this.Wallpaper.Name = "Wallpaper";
+            this.Wallpaper.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("Wallpaper.OcxState")));
+            this.Wallpaper.Size = new System.Drawing.Size(1087, 612);
+            this.Wallpaper.TabIndex = 6;
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(488, 531);
+            this.ClientSize = new System.Drawing.Size(1085, 547);
             this.Controls.Add(this.btn_logincache);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.btn_register);
             this.Controls.Add(this.btn_login);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.Wallpaper);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -117,19 +116,18 @@
             this.Text = "Login";
             this.Load += new System.EventHandler(this.Login_Load);
             this.Enter += new System.EventHandler(this.Login_Enter);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Wallpaper)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
         private MetroFramework.Controls.MetroButton btn_login;
         private MetroFramework.Controls.MetroButton btn_register;
         private MetroFramework.Controls.MetroTextBox txtUsername;
         private MetroFramework.Controls.MetroTextBox txtPassword;
         private MetroFramework.Controls.MetroButton btn_logincache;
+        private AxWMPLib.AxWindowsMediaPlayer Wallpaper;
     }
 }
 

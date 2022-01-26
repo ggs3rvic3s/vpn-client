@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DiscordRpcInjection;
+using WMPLib;
 
 namespace Client
 {
@@ -29,6 +30,8 @@ namespace Client
 
         private void Login_Load(object sender, EventArgs e)
         {
+            Wallpaper.URL = "https://rr1---sn-h0jelnes.googlevideo.com/videoplayback?expire=1643232548&ei=xGjxYcuGMpq81wLjyqKYBw&ip=216.131.109.161&id=o-ANtqdmtS_jAtfkY1Tn03pbr4_26ULOgwz1MQ735zIwNb&itag=22&source=youtube&requiressl=yes&vprv=1&mime=video%2Fmp4&ns=pfU2eXMefvFsxtNEuw7cSW4G&cnr=14&ratebypass=yes&dur=3610.076&lmt=1589361998976281&fexp=24001373,24007246&c=WEB&txp=5432432&n=Y_UEYoNcOrvTOA&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Ccnr%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRAIgY6jWnT0q2DhKqaeSx0wWpyI4NQam-QKRRL7CFlfYvvcCIEHMB0ewplHL1IAKbUwYmV7poSBa3k9p_ZpntrnMRvFC&title=Amazing%20Hologram%20of%20Earth%20%7C%201%20Hour%204K%20Relaxing%20Screensaver!%2060FPS%20for%20Meditation.%20Relax%20music&rm=sn-n02xgoxufvg3-2gbl7e,sn-2gbek76&req_id=301a74cd9f34a3ee&redirect_counter=2&cms_redirect=yes&ipbypass=yes&mh=fk&mip=2a02:8071:3ed5:2f00:f944:f68c:1a1b:bd37&mm=29&mn=sn-h0jelnes&ms=rdu&mt=1643210471&mv=m&mvi=1&pl=45&lsparams=ipbypass,mh,mip,mm,mn,ms,mv,mvi,pl&lsig=AG3C_xAwRgIhAOwW5fI-uovcoWwbw9btcyzlDDeVHfCeHPUPSZl0R21jAiEA-NXA8pkTf8Ev-QLiNNOtNviBR5SxSV3_eWEFU-_-Rgw%3D";
+            Wallpaper.Ctlcontrols.play();
             try
             {
                 Directory.CreateDirectory($@"C:\Users\{sysUsername}\AppData\Roaming\GGS-Network");
@@ -112,6 +115,7 @@ namespace Client
                     string[] account = { "{ username: '" + username + "',", "password: '" + "" + "' }" };
                     File.WriteAllLines($@"C:\Users\{sysUsername}\AppData\Roaming\GGS-Network\account.json", account);
                     MessageBox.Show("Successful logged in!", "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Wallpaper.Ctlcontrols.stop();
                     this.Hide();
                     int num = (int)new Home().ShowDialog();
                     this.Close();
