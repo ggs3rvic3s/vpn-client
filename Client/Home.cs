@@ -33,7 +33,7 @@ namespace Client
             btn_deleteOVPN.Visible = false;
             btn_Connect.Visible = true;
             btn_Disconnect.Visible = false;
-            if (File.Exists($@"AddTAP6.bat") && File.Exists($@"TAP-control.exe"))
+            if (File.Exists($@"AddTAP6.bat") && File.Exists($@"TAP-control.bat"))
             {
 
             }

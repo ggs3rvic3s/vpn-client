@@ -120,9 +120,9 @@ namespace Client
                     int num = (int)new Home().ShowDialog();
                     this.Close();
                 }
-                else
+                if (responseParse.success == false)
                 {
-                    MessageBox.Show(responseParse.message, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    MessageBox.Show($"{responseParse.message}", "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 }
             }
             catch (Exception ex)
