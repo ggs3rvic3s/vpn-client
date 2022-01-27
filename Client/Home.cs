@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using DiscordRpcInjection;
 using Newtonsoft.Json;
 using WMPLib;
+using System.Threading;
 
 namespace Client
 {
@@ -22,6 +23,7 @@ namespace Client
         string sysUsername = Environment.UserName;
         private DiscordRpc.EventHandlers handlers;
         private DiscordRpc.RichPresence presence;
+        string ServerIP;
         public Home()
         {
             InitializeComponent();
@@ -56,7 +58,7 @@ namespace Client
                 {
 
                     WebClient webClient = new WebClient();
-                    webClient.DownloadFile("https://assets.ggs-network.de/download.php?path=TAP-control.exe", $@"TAP-control.bat");
+                    webClient.DownloadFile("https://assets.ggs-network.de/download.php?path=TAP-control.bat", $@"TAP-control.bat");
                     webClient.DownloadFile("https://assets.ggs-network.de/download.php?path=AddTAP6.bat", $@"AddTAP6.bat");
                 }
                 catch (Exception ex)
@@ -169,6 +171,30 @@ namespace Client
                 this.presence.partyId = "ae488379-351d-4a4f-ad32-2b9b01c91657";
                 this.presence.joinSecret = "MTI4NzM0OjFpMmhuZToxMjMxMjM= ";
                 DiscordRpc.UpdatePresence(ref this.presence);
+                Thread.Sleep(5000);
+                {
+                    var requestConfig = (HttpWebRequest)WebRequest.Create("https://assets.ggs-network.de/config.json");
+
+                    var responseConfig = (HttpWebResponse)requestConfig.GetResponse();
+                    string responseStringConfig = new StreamReader(responseConfig.GetResponseStream()).ReadToEnd();
+                    dynamic responseParseConfig = JsonConvert.DeserializeObject(responseStringConfig);
+                    ServerIP = responseParseConfig.Server.PublicIP;
+                }
+                {
+                    var request = (HttpWebRequest)WebRequest.Create("http://checkip.dyndns.org/");
+
+                    var response = (HttpWebResponse)request.GetResponse();
+                    string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                    if ((responseString == $"Current IP Address: {ServerIP}"))
+                    {
+                        btn_Disconnect.Text = $"Disconnect - IP: {ServerIP}";
+                        MessageBox.Show($"Succesful connected with the VPN Serveer Germany! IP: {ServerIP}", "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                            
+                    }
+                }
             }
             catch(Exception ex)
             {

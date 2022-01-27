@@ -43,7 +43,7 @@
             // 
             this.btn_Connect.Location = new System.Drawing.Point(11, 494);
             this.btn_Connect.Name = "btn_Connect";
-            this.btn_Connect.Size = new System.Drawing.Size(163, 29);
+            this.btn_Connect.Size = new System.Drawing.Size(213, 29);
             this.btn_Connect.TabIndex = 2;
             this.btn_Connect.Text = "Connect";
             this.btn_Connect.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -51,9 +51,9 @@
             // 
             // btn_Disconnect
             // 
-            this.btn_Disconnect.Location = new System.Drawing.Point(12, 494);
+            this.btn_Disconnect.Location = new System.Drawing.Point(11, 494);
             this.btn_Disconnect.Name = "btn_Disconnect";
-            this.btn_Disconnect.Size = new System.Drawing.Size(163, 29);
+            this.btn_Disconnect.Size = new System.Drawing.Size(213, 29);
             this.btn_Disconnect.TabIndex = 3;
             this.btn_Disconnect.Text = "Disconnect";
             this.btn_Disconnect.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -61,7 +61,7 @@
             // 
             // btn_deleteOVPN
             // 
-            this.btn_deleteOVPN.Location = new System.Drawing.Point(201, 494);
+            this.btn_deleteOVPN.Location = new System.Drawing.Point(230, 494);
             this.btn_deleteOVPN.Name = "btn_deleteOVPN";
             this.btn_deleteOVPN.Size = new System.Drawing.Size(163, 29);
             this.btn_deleteOVPN.TabIndex = 4;
