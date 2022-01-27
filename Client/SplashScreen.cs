@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,8 +22,20 @@ namespace Client
         }
         private void SplashScreen_Load(object sender, EventArgs e)
         {
-            SplashPlayer.URL = "https://assets.ggs-network.de/splashscreen.mp4";
-            SplashPlayer.Ctlcontrols.play();
+            try
+            {
+                var request = (HttpWebRequest)WebRequest.Create("https://assets.ggs-network.de/config.json");
+
+                var response = (HttpWebResponse)request.GetResponse();
+                string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                dynamic responseParse = JsonConvert.DeserializeObject(responseString);
+                SplashPlayer.URL = responseParse.Video.Splash;
+                SplashPlayer.Ctlcontrols.play();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void SplashPlayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
