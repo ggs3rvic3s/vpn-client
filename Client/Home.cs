@@ -1,320 +1,108 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using DiscordRpcInjection;
-using Newtonsoft.Json;
-using WMPLib;
-using System.Threading;
+using MaterialSkin;
+using MaterialSkin.Controls;
 
 namespace Client
 {
-    public partial class Home : Form
+    public partial class Home : MaterialForm
     {
-        public bool connected;
-        string sysUsername = Environment.UserName;
-        private DiscordRpc.EventHandlers handlers;
-        private DiscordRpc.RichPresence presence;
-        string ServerIP;
         public Home()
         {
             InitializeComponent();
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.LightBlue800, Primary.LightBlue900, Primary.LightBlue500, Accent.LightBlue200, TextShade.BLACK);
         }
 
         private void Home_Load(object sender, EventArgs e)
         {
-            try
-            {
-                var request = (HttpWebRequest)WebRequest.Create("https://assets.ggs-network.de/config.json");
-
-                var response = (HttpWebResponse)request.GetResponse();
-                string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-                dynamic responseParse = JsonConvert.DeserializeObject(responseString);
-                Wallpaper.URL = responseParse.Video.Wallpaper;
-                Wallpaper.Ctlcontrols.play();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            btn_deleteOVPN.Visible = false;
-            btn_Connect.Visible = true;
+            //Set Wallpaper Player
+            Wallpaper.URL = config_cs.config_cs.Video_Wallpaper;
+            Wallpaper.Ctlcontrols.play();
             btn_Disconnect.Visible = false;
-            if (File.Exists($@"AddTAP6.bat") && File.Exists($@"TAP-control.bat"))
-            {
-
-            }
-            else
-            {
-                try
-                {
-
-                    WebClient webClient = new WebClient();
-                    webClient.DownloadFile("https://assets.ggs-network.de/download.php?path=TAP-control.bat", $@"TAP-control.bat");
-                    webClient.DownloadFile("https://assets.ggs-network.de/download.php?path=AddTAP6.bat", $@"AddTAP6.bat");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            if (File.Exists(@"C:\Program Files (x86)\OVPN-Driver\OpenVPN\bin\openvpn.exe"))
-            {
-                btn_deleteOVPN.Visible = true;
-                btn_Connect.Enabled = true;
-                if(File.Exists($@"OVPN-Control.bat") && File.Exists($@"killOVPN.bat"))
-                {
-                   
-                }
-                else
-                {
-                    try
-                    {
-
-                        WebClient webClient = new WebClient();
-                        webClient.DownloadFile("https://assets.ggs-network.de/download.php?path=OVPN-Control.bat", $@"OVPN-Control.bat");
-                        webClient.DownloadFile("https://assets.ggs-network.de/download.php?path=killOVPN.bat", $@"killOVPN.bat");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-            else
-            {
-                btn_Connect.Enabled = false;
-                try
-                {
-                    MessageBox.Show("OpenVPN Driver not found!", "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    try
-                    {
-                        WebClient webClient = new WebClient();
-                        webClient.DownloadFile("https://assets.ggs-network.de/download.php?path=ovpn-driver.exe", $@"C:\Users\{sysUsername}\AppData\Local\Temp\ovpn-driver.exe");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    try
-                    {
-                        Process.Start($@"C:\Users\{sysUsername}\AppData\Local\Temp\ovpn-driver.exe");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            this.handlers = default(DiscordRpc.EventHandlers);
-            DiscordRpc.Initialize("854090411140579339", ref this.handlers, true, null);
-            this.handlers = default(DiscordRpc.EventHandlers);
-            DiscordRpc.Initialize("854090411140579339", ref this.handlers, true, null);
-            this.presence.details = "Home - VPN Client";
-            this.presence.largeImageKey = "1024x1024";
-            this.presence.largeImageText = "VPN Client by GGS-Network";
-            DiscordRpc.UpdatePresence(ref this.presence);
+            disconnectToolStripMenuItem.Visible = false;
         }
 
         private void btn_Connect_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (File.Exists($@"C:\Users\{sysUsername}\AppData\Roaming\GGS-Network\client.ovpn"))
-                {
-
-                }
-                else
-                {
-                    try
-                    {
-                        WebClient webClient = new WebClient();
-                        webClient.DownloadFile("https://assets.ggs-network.de/download.php?path=ggs-networkde.ovpn", $@"C:\Users\{sysUsername}\AppData\Roaming\GGS-Network\client.ovpn");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                File.Delete($@"{Directory.GetCurrentDirectory()}\client.ovpn");
-                File.Move($@"C:\Users\{sysUsername}\AppData\Roaming\GGS-Network\client.ovpn", $@"{Directory.GetCurrentDirectory()}\client.ovpn");
-                connected = true;
-                btn_Connect.Visible = false;
-                btn_Disconnect.Visible = true;
-                Process process = new Process();
-                ProcessStartInfo startInfo = new ProcessStartInfo();
-                startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                startInfo.FileName = @"C:\Program Files (x86)\OVPN-Driver\OpenVPN\bin\openvpn.exe";
-                startInfo.Arguments = "--config client.ovpn";
-                startInfo.Verb = "runas";
-                process.StartInfo = startInfo;
-                process.Start();
-                this.presence.details = "Home - VPN Client";
-                this.presence.state = "Connected to GERMANY SERVER";
-                this.presence.largeImageKey = "1024x1024";
-                this.presence.largeImageText = "VPN Client by GGS-Network";
-                this.presence.startTimestamp = 1;
-                this.presence.partySize = 1;
-                this.presence.partyMax = 1;
-                this.presence.partyId = "ae488379-351d-4a4f-ad32-2b9b01c91657";
-                this.presence.joinSecret = "MTI4NzM0OjFpMmhuZToxMjMxMjM= ";
-                DiscordRpc.UpdatePresence(ref this.presence);
-                Thread.Sleep(5000);
-                {
-                    var requestConfig = (HttpWebRequest)WebRequest.Create("https://assets.ggs-network.de/config.json");
-
-                    var responseConfig = (HttpWebResponse)requestConfig.GetResponse();
-                    string responseStringConfig = new StreamReader(responseConfig.GetResponseStream()).ReadToEnd();
-                    dynamic responseParseConfig = JsonConvert.DeserializeObject(responseStringConfig);
-                    ServerIP = responseParseConfig.Server.PublicIP;
-                }
-                {
-                    var request = (HttpWebRequest)WebRequest.Create("http://checkip.dyndns.org/");
-
-                    var response = (HttpWebResponse)request.GetResponse();
-                    string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-                    if ((responseString == $"Current IP Address: {ServerIP}"))
-                    {
-                        btn_Disconnect.Text = $"Disconnect - IP: {ServerIP}";
-                        MessageBox.Show($"Succesful connected with the VPN Serveer Germany! IP: {ServerIP}", "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                            
-                    }
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            btn_Disconnect.Visible = true;
+            btn_Connect.Visible = false;
+            connectToolStripMenuItem.Visible = false;
+            disconnectToolStripMenuItem.Visible = true;
+            vpn_cs.vpn_cs.connect();
         }
 
         private void btn_Disconnect_Click(object sender, EventArgs e)
         {
-            try
+            btn_Disconnect.Visible = false;
+            btn_Connect.Visible = true;
+            connectToolStripMenuItem.Visible = true;
+            disconnectToolStripMenuItem.Visible = false;
+            vpn_cs.vpn_cs.disconnect();
+        }
+
+        private void btn_dev_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://ggs-network.de");
+        }
+
+        private void btn_OpenSource_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/Good-Game-Services/vpn-client");
+        }
+
+        private void connectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btn_Disconnect.Visible = true;
+            btn_Connect.Visible = false;
+            connectToolStripMenuItem.Visible = false;
+            disconnectToolStripMenuItem.Visible = true;
+            vpn_cs.vpn_cs.connect();
+        }
+
+        private void disconnectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btn_Disconnect.Visible = false;
+            btn_Connect.Visible = true;
+            connectToolStripMenuItem.Visible = true;
+            disconnectToolStripMenuItem.Visible = false;
+            vpn_cs.vpn_cs.disconnect();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            vpn_cs.vpn_cs.disconnect();
+            this.Hide();
+            Application.Exit();
+        }
+
+        private void notify_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.Show();
+        }
+
+        private void showToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Show();
+        }
+
+        private void Home_Move(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
             {
-                connected = false;
-                btn_Connect.Visible = true;
-                btn_Disconnect.Visible = false;
-                Process process = new Process();
-                ProcessStartInfo startInfo = new ProcessStartInfo();
-                startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                startInfo.FileName = @"OVPN-Control.bat";
-                process.StartInfo = startInfo;
-                process.Start();
-                File.Delete($@"{Directory.GetCurrentDirectory()}\client.ovpn");
-                this.presence.details = "Home - VPN Client";
-                this.presence.state = "Disconnected";
-                this.presence.largeImageKey = "1024x1024";
-                this.presence.largeImageText = "VPN Client by GGS-Network";
-                DiscordRpc.UpdatePresence(ref this.presence);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Hide();
+                notify.ShowBalloonTip(1000, "Important notice", "Something important has come up. Click this to know more.", ToolTipIcon.Info);
             }
         }
 
-        private void btn_deleteOVPN_Click(object sender, EventArgs e)
+        private void btn_Exit_Click(object sender, EventArgs e)
         {
-            btn_deleteOVPN.Visible = false;
-            btn_Connect.Enabled = false;
-            try
-            {
-                Process.Start(@"C:\Program Files (x86)\OVPN-Driver\Uninstall OpenVPN Driver by GGS-Network.exe");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btn_tap6_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Process process = new Process();
-                ProcessStartInfo startInfo = new ProcessStartInfo();
-                startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                startInfo.FileName = @"TAP-control.bat";
-                process.StartInfo = startInfo;
-                process.Start();
-                MessageBox.Show("TAP6 Virtual Network Adapter was succesful add!", "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        private void btn_ovpngui_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Process process = new Process();
-                ProcessStartInfo startInfo = new ProcessStartInfo();
-                startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                startInfo.FileName = @"C:\Program Files (x86)\OVPN-Driver\OpenVPN\bin\openvpn-gui.exe";
-                startInfo.Verb = "runas";
-                process.StartInfo = startInfo;
-                process.Start();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btn_cache_Click(object sender, EventArgs e)
-        {
-            if(File.Exists($@"C:\Users\{sysUsername}\AppData\Roaming\GGS-Network\account.json"))
-            {
-                MessageBox.Show("Cache deleted!", "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                File.Delete($@"C:\Users\{sysUsername}\AppData\Roaming\GGS-Network\account.json");
-            }
-            else
-            {
-                MessageBox.Show("Cache not avaible!", "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void Home_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            MessageBox.Show("The client will be close the VPN Connection beacuse you close the client!", "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            try
-            {
-                connected = false;
-                btn_Connect.Visible = true;
-                btn_Disconnect.Visible = false;
-                Process process = new Process();
-                ProcessStartInfo startInfo = new ProcessStartInfo();
-                startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                startInfo.FileName = @"OVPN-Control.bat";
-                process.StartInfo = startInfo;
-                process.Start();
-                File.Delete($@"{Directory.GetCurrentDirectory()}\client.ovpn");
-                this.presence.details = "Home - VPN Client";
-                this.presence.state = "Disconnected";
-                this.presence.largeImageKey = "1024x1024";
-                this.presence.largeImageText = "VPN Client by GGS-Network";
-                DiscordRpc.UpdatePresence(ref this.presence);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            vpn_cs.vpn_cs.disconnect();
+            this.Hide();
+            Application.Exit();
         }
     }
 }

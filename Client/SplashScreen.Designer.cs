@@ -36,10 +36,10 @@
             // SplashPlayer
             // 
             this.SplashPlayer.Enabled = true;
-            this.SplashPlayer.Location = new System.Drawing.Point(-1, -1);
+            this.SplashPlayer.Location = new System.Drawing.Point(-2, -2);
             this.SplashPlayer.Name = "SplashPlayer";
             this.SplashPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("SplashPlayer.OcxState")));
-            this.SplashPlayer.Size = new System.Drawing.Size(801, 521);
+            this.SplashPlayer.Size = new System.Drawing.Size(803, 519);
             this.SplashPlayer.TabIndex = 0;
             this.SplashPlayer.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.SplashPlayer_PlayStateChange);
             // 

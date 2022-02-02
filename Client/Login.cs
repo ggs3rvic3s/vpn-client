@@ -1,110 +1,55 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
+﻿using System;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using MaterialSkin;
+using MaterialSkin.Controls;
+using Newtonsoft.Json;
 using DiscordRpcInjection;
-using WMPLib;
 
 namespace Client
 {
-    public partial class Login : Form
+    public partial class Login : MaterialForm
     {
-        string username;
-        string password;
-        string sysUsername = Environment.UserName;
-        private DiscordRpc.EventHandlers handlers;
         private DiscordRpc.RichPresence presence;
+        private DiscordRpc.EventHandlers handlers;
         public Login()
         {
             InitializeComponent();
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.LightBlue800, Primary.LightBlue900, Primary.LightBlue500, Accent.LightBlue200, TextShade.BLACK);
         }
 
         private void Login_Load(object sender, EventArgs e)
         {
-            try
-            {
-                var request = (HttpWebRequest)WebRequest.Create("https://assets.ggs-network.de/config.json");
+            this.handlers = default(DiscordRpc.EventHandlers);
+            DiscordRpc.Initialize("854090411140579339", ref this.handlers, true, null);
+            this.presence.state = "Login";
+            this.presence.largeImageKey = "1024x1024";
+            this.presence.largeImageText = "VPN Client by GGS-Network";
+            DiscordRpc.UpdatePresence(ref this.presence);
 
-                var response = (HttpWebResponse)request.GetResponse();
-                string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-                dynamic responseParse = JsonConvert.DeserializeObject(responseString);
-                Wallpaper.URL = responseParse.Video.Wallpaper;
-                Wallpaper.Ctlcontrols.play();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            try
-            {
-                Directory.CreateDirectory($@"C:\Users\{sysUsername}\AppData\Roaming\GGS-Network");
-            }
-            catch 
-            {
-            }
-            if (File.Exists($@"C:\Users\{sysUsername}\AppData\Roaming\GGS-Network\account.json"))
-            {
-                string cache = File.ReadAllText($@"C:\Users\{sysUsername}\AppData\Roaming\GGS-Network\account.json");
-                dynamic cacheParse = JsonConvert.DeserializeObject(cache);
+            //Set Lang
+            btn_Login.Text = lang_cs.lang_cs.Lang_Login;
+            btn_Register.Text = lang_cs.lang_cs.Lang_Register;
 
-                txtUsername.Text = cacheParse.username;
-                btn_logincache.Visible = false;
-            }
-            else
-            {
-                btn_logincache.Visible = false;
-            }
-            if(File.Exists("discord-rpc-w32.dll"))
-            {
-                this.handlers = default(DiscordRpc.EventHandlers);
-                DiscordRpc.Initialize("854090411140579339", ref this.handlers, true, null);
-                this.handlers = default(DiscordRpc.EventHandlers);
-                DiscordRpc.Initialize("854090411140579339", ref this.handlers, true, null);
-                this.presence.details = "Login - VPN Client";
-                this.presence.largeImageKey = "1024x1024";
-                this.presence.largeImageText = "VPN Client by GGS-Network";
-                DiscordRpc.UpdatePresence(ref this.presence);
-            }
-            else
-            {
-                try
-                {
-                    WebClient webClient = new WebClient();
-                    webClient.DownloadFile("https://assets.ggs-network.de/download.php?path=discord-rpc-w32.dll", "discord-rpc-w32.dll");
-                    this.handlers = default(DiscordRpc.EventHandlers);
-                    DiscordRpc.Initialize("854090411140579339", ref this.handlers, true, null);
-                    this.handlers = default(DiscordRpc.EventHandlers);
-                    DiscordRpc.Initialize("854090411140579339", ref this.handlers, true, null);
-                    this.presence.details = "Login - VPN Client";
-                    this.presence.largeImageKey = "1024x1024";
-                    this.presence.largeImageText = "VPN Client by GGS-Network";
-                    DiscordRpc.UpdatePresence(ref this.presence);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+            //Set Wallpaper Player
+            Wallpaper.URL = config_cs.config_cs.Video_Wallpaper;
+            Wallpaper.Ctlcontrols.play();
         }
-        private void btn_login_Click(object sender, EventArgs e)
+
+        private void btn_Login_Click(object sender, EventArgs e)
         {
-            username = txtUsername.Text;
-            password = txtPassword.Text;
-
-
+            auth_cs.auth_cs.Username = txt_Username.Text;
+            auth_cs.auth_cs.Password = txt_Password.Text;
+            
             var request = (HttpWebRequest)WebRequest.Create("https://auth.ggs-network.de/auth/login.php");
 
-            var postData = "username=" + Uri.EscapeDataString(username);
-            postData += "&password=" + Uri.EscapeDataString(password);
+            var postData = "username=" + Uri.EscapeDataString(auth_cs.auth_cs.Username);
+            postData += "&password=" + Uri.EscapeDataString(auth_cs.auth_cs.Password);
             var data = Encoding.ASCII.GetBytes(postData);
 
             request.Method = "POST";
@@ -123,9 +68,7 @@ namespace Client
                 dynamic responseParse = JsonConvert.DeserializeObject(responseString);
 
                 if (responseParse.success == true)
-                {   
-                    string[] account = { "{ username: '" + username + "',", "password: '" + "" + "' }" };
-                    File.WriteAllLines($@"C:\Users\{sysUsername}\AppData\Roaming\GGS-Network\account.json", account);
+                {
                     MessageBox.Show("Successful logged in!", "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Wallpaper.Ctlcontrols.stop();
                     this.Hide();
@@ -143,67 +86,15 @@ namespace Client
             }
         }
 
-        private void btn_register_Click(object sender, EventArgs e)
+        private void btn_Exit_Click(object sender, EventArgs e)
         {
-            Process.Start("https://account.ggs-network.de/register.php");
+            this.Hide();
+            Application.Exit();
         }
 
-        private void Login_Enter(object sender, EventArgs e)
+        private void btn_Mini_Click(object sender, EventArgs e)
         {
-        }
-
-        private void btn_logincache_Click(object sender, EventArgs e)
-        {
-            if(File.Exists($@"C:\Users\{sysUsername}\AppData\Roaming\GGS-Network\account.json"))
-            {
-                string cache = File.ReadAllText($@"C:\Users\{sysUsername}\AppData\Roaming\GGS-Network\account.json");
-                dynamic cacheParse = JsonConvert.DeserializeObject(cache);
-
-                string username = cacheParse.username;
-                string password = cacheParse.password;
-
-                var request = (HttpWebRequest)WebRequest.Create("https://auth.ggs-network.de/auth/login.php");
-
-                var postData = "username=" + Uri.EscapeDataString(username);
-                postData += "&password=" + Uri.EscapeDataString(password);
-                var data = Encoding.ASCII.GetBytes(postData);
-
-                request.Method = "POST";
-                request.ContentType = "application/x-www-form-urlencoded";
-                request.ContentLength = data.Length;
-
-                using (var stream = request.GetRequestStream())
-                {
-                    stream.Write(data, 0, data.Length);
-                }
-                try
-                {
-                    var response = (HttpWebResponse)request.GetResponse();
-
-                    var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-                    dynamic responseParse = JsonConvert.DeserializeObject(responseString);
-
-                    if (responseParse.success == true)
-                    {
-                        MessageBox.Show("Successful logged in!", "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.Hide();
-                        int num = (int)new Home().ShowDialog();
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show(responseParse.message, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("CACHE ERROR", "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

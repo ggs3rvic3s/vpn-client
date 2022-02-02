@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Allgemeine Informationen über eine Assembly werden über die folgenden
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die einer Assembly zugeordnet sind.
-[assembly: AssemblyTitle("VPN Client by GGS-Network")]
-[assembly: AssemblyDescription("VPN Client by OpenVPN Protocol")]
+[assembly: AssemblyTitle("Client")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("GoodGameServices Inc.")]
-[assembly: AssemblyProduct("VPN Client")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("Client")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Die folgende GUID bestimmt die ID der Typbibliothek, wenn dieses Projekt für COM verfügbar gemacht wird
-[assembly: Guid("927ec656-9c0f-413d-b055-c169d1c9b8fa")]
+[assembly: Guid("a4d17ed2-27b3-4a30-983a-79d2d4d652c3")]
 
 // Versionsinformationen für eine Assembly bestehen aus den folgenden vier Werten:
 //
