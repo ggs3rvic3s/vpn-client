@@ -88,10 +88,7 @@ namespace Client
 
         private void btn_Exit_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
             Wallpaper.Ctlcontrols.stop();
-=======
->>>>>>> 8be0361a5866967e57878336e419215a8b7269c4
             this.Hide();
             Application.Exit();
         }

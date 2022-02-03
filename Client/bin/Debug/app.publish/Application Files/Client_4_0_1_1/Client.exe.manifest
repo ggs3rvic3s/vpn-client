@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
   <asmv1:assemblyIdentity name="Client.exe" version="4.0.1.1" publicKeyToken="51557c4dc96881a7" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="1024x1024.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
     <assemblyIdentity name="Client" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
@@ -54,14 +55,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Client.exe" size="673248">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Client.exe" size="991200">
       <assemblyIdentity name="Client" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>CTz2HSJzkQZzaYsTSBS2oPFs0fAFGhFTVgRsBDEKmBc=</dsig:DigestValue>
+        <dsig:DigestValue>Cza9RGnKDL17G3AvBantvuGGlLu8sfnUXUkdWztaeC8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -73,7 +74,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>SF1IYboAVbI2daLFAJwNjX08xM+yrVXgxFd9dvAiZM0=</dsig:DigestValue>
+        <dsig:DigestValue>tnVKoqrKYDJPi1bq20mnBX87rxuLm7+pySUNLNN0Ssk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -125,6 +126,15 @@
       </hash>
     </dependentAssembly>
   </dependency>
+  <file name="1024x1024.ico" size="317150">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>plXIF8IlA9OvfPtWh0/n7a7iFACjvQqwmTpz81l1rus=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Client.exe.config" size="189">
     <hash>
       <dsig:Transforms>
@@ -143,4 +153,4 @@
       <dsig:DigestValue>+yV6adEVlpUIOiH/IdsfqaixKo0MB7DiB/hBOyI4wKw=</dsig:DigestValue>
     </hash>
   </file>
-<publisherIdentity name="CN=ASUS-ROG-LAPTOP\othog" issuerKeyHash="373ed516ee7810f70a0bf6b744345b9ba70a830b" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>2zR3TqTeaK8T1M1GvBwP/8wtotU2PfvFeEmhA9xdt50=</DigestValue></Reference></SignedInfo><SignatureValue>NJCa1VgNZm+2rwmUJgF3d4W6EaQrg7aH/OJZdeTF6xtAZGBiXJv1UqstuaKfqoFgwxKf/DmC8BQPnMm2UGZ3EcJP0eHpc8u0w3nHxTtahlmkpUVe5gsyhTjoNvDYcCI/Gpmt4fjl8pJZBPyM/L5kVEvDVLnNoegrPGVCpfazORI=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>5StrTgIm95B59qiAWykIcshBMI1OK95vlLFa6bGNpuxf8cEAvL1zFEOgQ26SZUTHr0CTg+lI7XDkyYOb9FsHXAdPD/qUIFJS0WFLR7ECGzLO/tgrMS0mlziqksAYy9awqJotiwGSpiFJlFHHWw+vxADPI027UTMfcNbMGbxnf40=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="9db75ddc03a14978c5fb3d36d5a22dccff0f1cbc46cdd413af68dea44e7734db" Description="" Url=""><as:assemblyIdentity name="Client.exe" version="4.0.1.1" publicKeyToken="51557c4dc96881a7" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=ASUS-ROG-LAPTOP\othog</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>jWHNEGuBUmcW7zu+9qMxHBDkpd86gRgXfr5j1R4QXr8=</DigestValue></Reference></SignedInfo><SignatureValue>rCgc/BQtbSO2pZNqlqyso6xqqnPaPGtoyvkF/5vdHVQPSrLPQLIUJviNN06rJYDmXVS0TD0UoXeha3DaffxYKrv+NN6e5ueZn66yMxIRFNcC973BqIVOFNxuKVt59i991AMKuEAdwVqkJzn4zbef28rWWk5Ru8xBrKzfvcGt5R8=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>5StrTgIm95B59qiAWykIcshBMI1OK95vlLFa6bGNpuxf8cEAvL1zFEOgQ26SZUTHr0CTg+lI7XDkyYOb9FsHXAdPD/qUIFJS0WFLR7ECGzLO/tgrMS0mlziqksAYy9awqJotiwGSpiFJlFHHWw+vxADPI027UTMfcNbMGbxnf40=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB7TCCAVagAwIBAgIQEEFSbSEF1oJDTZENCGuvLTANBgkqhkiG9w0BAQsFADA1MTMwMQYDVQQDHioAQQBTAFUAUwAtAFIATwBHAC0ATABBAFAAVABPAFAAXABvAHQAaABvAGcwHhcNMjIwMjAzMDczMjE5WhcNMjMwMjAzMTMzMjE5WjA1MTMwMQYDVQQDHioAQQBTAFUAUwAtAFIATwBHAC0ATABBAFAAVABPAFAAXABvAHQAaABvAGcwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAOUra04CJveQefaogFspCHLIQTCNTiveb5SxWumxjabsX/HBALy9cxRDoENukmVEx69Ak4PpSO1w5MmDm/RbB1wHTw/6lCBSUtFhS0exAhsyzv7YKzEtJpc4qpLAGMvWsKiaLYsBkqYhSZRRx1sPr8QAzyNNu1EzH3DWzBm8Z3+NAgMBAAEwDQYJKoZIhvcNAQELBQADgYEAAWxBLosxOlor3p7ALdysBV8De6TI+vmdhMRi7EGSUqhj2aBabs39PdBzoHiCLS6aqcvLcpSTjyhO2WRvq6e5RnZR/3A678t952NQJyN+89/Vjm/ggxsAWaDbw1omC/XkrzJlWTpZLMJi3K55jfF8NmplViiu90h6k3NhjFftgCY=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
+<publisherIdentity name="CN=ASUS-ROG-LAPTOP\othog" issuerKeyHash="373ed516ee7810f70a0bf6b744345b9ba70a830b" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>l8YOFlWJ0l72EruNDtGArnbWlrI+isD3a5Xnb/ExJ0w=</DigestValue></Reference></SignedInfo><SignatureValue>II20L0KHC1642aZNYBnMn9ObqwsUy0loC5WupRdVoSpGriNHZC/o9D1RZP+2t35f/vDluIifsZsxKGSVoBwjynyhSHi16ffNrIjXileoQmfGcfRvbShK/El2hvdyqXF3XaFYiRxPErdcgDnUuL9JnkgI2ReGf6zv7IF32fspBdI=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>5StrTgIm95B59qiAWykIcshBMI1OK95vlLFa6bGNpuxf8cEAvL1zFEOgQ26SZUTHr0CTg+lI7XDkyYOb9FsHXAdPD/qUIFJS0WFLR7ECGzLO/tgrMS0mlziqksAYy9awqJotiwGSpiFJlFHHWw+vxADPI027UTMfcNbMGbxnf40=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="4c2731f16fe7956bf7c08a3eb296d676ae80d10e8dbb12f65ed28955160ec697" Description="" Url=""><as:assemblyIdentity name="Client.exe" version="4.0.1.1" publicKeyToken="51557c4dc96881a7" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=ASUS-ROG-LAPTOP\othog</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>7ap5nFMrQC4fkxV7WfJz3f0YHUF/taMfOdwwBdqx9yY=</DigestValue></Reference></SignedInfo><SignatureValue>H6k1cEATVDnwRfADusheCjIXY+T9/lm+kYfInSh/x3EftsHsyJ0KcQjFucuoq/S7K4xLd81ys79siBRa3XL952g7NJ3HQboxGI3slUAjS9ngBDzUtgiSVelqrwfWyDE92neER2l1uK7WPv5lMHPvYbQfmhjZCXwOjTaco60KvAs=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>5StrTgIm95B59qiAWykIcshBMI1OK95vlLFa6bGNpuxf8cEAvL1zFEOgQ26SZUTHr0CTg+lI7XDkyYOb9FsHXAdPD/qUIFJS0WFLR7ECGzLO/tgrMS0mlziqksAYy9awqJotiwGSpiFJlFHHWw+vxADPI027UTMfcNbMGbxnf40=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB7TCCAVagAwIBAgIQEEFSbSEF1oJDTZENCGuvLTANBgkqhkiG9w0BAQsFADA1MTMwMQYDVQQDHioAQQBTAFUAUwAtAFIATwBHAC0ATABBAFAAVABPAFAAXABvAHQAaABvAGcwHhcNMjIwMjAzMDczMjE5WhcNMjMwMjAzMTMzMjE5WjA1MTMwMQYDVQQDHioAQQBTAFUAUwAtAFIATwBHAC0ATABBAFAAVABPAFAAXABvAHQAaABvAGcwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAOUra04CJveQefaogFspCHLIQTCNTiveb5SxWumxjabsX/HBALy9cxRDoENukmVEx69Ak4PpSO1w5MmDm/RbB1wHTw/6lCBSUtFhS0exAhsyzv7YKzEtJpc4qpLAGMvWsKiaLYsBkqYhSZRRx1sPr8QAzyNNu1EzH3DWzBm8Z3+NAgMBAAEwDQYJKoZIhvcNAQELBQADgYEAAWxBLosxOlor3p7ALdysBV8De6TI+vmdhMRi7EGSUqhj2aBabs39PdBzoHiCLS6aqcvLcpSTjyhO2WRvq6e5RnZR/3A678t952NQJyN+89/Vjm/ggxsAWaDbw1omC/XkrzJlWTpZLMJi3K55jfF8NmplViiu90h6k3NhjFftgCY=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
