@@ -21,6 +21,35 @@ C:\Users\othog\Documents\GitHub\client-rebuild\Client\obj\Debug\Interop.WMPLib.d
 C:\Users\othog\Documents\GitHub\client-rebuild\Client\obj\Debug\AxInterop.WMPLib.dll
 C:\Users\othog\Documents\GitHub\client-rebuild\Client\obj\Debug\Client.csproj.ResolveComReference.cache
 C:\Users\othog\Documents\GitHub\client-rebuild\Client\obj\Debug\Client.SplashScreen.resources
+<<<<<<< HEAD
+C:\Users\othog\Documents\GitHub\vpn-client\Client\bin\Debug\Client.exe.config
+C:\Users\othog\Documents\GitHub\vpn-client\Client\bin\Debug\Client.exe.manifest
+C:\Users\othog\Documents\GitHub\vpn-client\Client\bin\Debug\Client.application
+C:\Users\othog\Documents\GitHub\vpn-client\Client\bin\Debug\Client.exe
+C:\Users\othog\Documents\GitHub\vpn-client\Client\bin\Debug\Client.pdb
+C:\Users\othog\Documents\GitHub\vpn-client\Client\bin\Debug\MaterialSkin.dll
+C:\Users\othog\Documents\GitHub\vpn-client\Client\bin\Debug\MetroFramework.dll
+C:\Users\othog\Documents\GitHub\vpn-client\Client\bin\Debug\MetroFramework.Fonts.dll
+C:\Users\othog\Documents\GitHub\vpn-client\Client\bin\Debug\Newtonsoft.Json.dll
+C:\Users\othog\Documents\GitHub\vpn-client\Client\bin\Debug\Newtonsoft.Json.xml
+C:\Users\othog\Documents\GitHub\vpn-client\Client\bin\Debug\Interop.WMPLib.dll
+C:\Users\othog\Documents\GitHub\vpn-client\Client\bin\Debug\AxInterop.WMPLib.dll
+C:\Users\othog\Documents\GitHub\vpn-client\Client\obj\Debug\Client.csproj.AssemblyReference.cache
+C:\Users\othog\Documents\GitHub\vpn-client\Client\obj\Debug\Client.csproj.SuggestedBindingRedirects.cache
+C:\Users\othog\Documents\GitHub\vpn-client\Client\obj\Debug\Interop.WMPLib.dll
+C:\Users\othog\Documents\GitHub\vpn-client\Client\obj\Debug\AxInterop.WMPLib.dll
+C:\Users\othog\Documents\GitHub\vpn-client\Client\obj\Debug\Client.csproj.ResolveComReference.cache
+C:\Users\othog\Documents\GitHub\vpn-client\Client\obj\Debug\Client.Login.resources
+C:\Users\othog\Documents\GitHub\vpn-client\Client\obj\Debug\Client.Properties.Resources.resources
+C:\Users\othog\Documents\GitHub\vpn-client\Client\obj\Debug\Client.SplashScreen.resources
+C:\Users\othog\Documents\GitHub\vpn-client\Client\obj\Debug\Client.csproj.GenerateResource.cache
+C:\Users\othog\Documents\GitHub\vpn-client\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
+C:\Users\othog\Documents\GitHub\vpn-client\Client\obj\Debug\Client.exe.manifest
+C:\Users\othog\Documents\GitHub\vpn-client\Client\obj\Debug\Client.application
+C:\Users\othog\Documents\GitHub\vpn-client\Client\obj\Debug\Client.csproj.CopyComplete
+C:\Users\othog\Documents\GitHub\vpn-client\Client\obj\Debug\Client.exe
+C:\Users\othog\Documents\GitHub\vpn-client\Client\obj\Debug\Client.pdb
+=======
 C:\Users\othog\Documents\GitHub\client-rebuild\Client\obj\Debug\Client.Home.resources
 C:\Users\othog\Documents\GitHub\client-rebuild\Client\bin\Debug\CppCodeProvider.dll
 C:\Users\othog\Documents\GitHub\client-rebuild\Client\bin\Debug\envdte.dll
@@ -30,3 +59,4 @@ C:\Users\othog\Documents\GitHub\client-rebuild\Client\bin\Debug\Client.exe.manif
 C:\Users\othog\Documents\GitHub\client-rebuild\Client\bin\Debug\Client.application
 C:\Users\othog\Documents\GitHub\client-rebuild\Client\obj\Debug\Client.exe.manifest
 C:\Users\othog\Documents\GitHub\client-rebuild\Client\obj\Debug\Client.application
+>>>>>>> 8be0361a5866967e57878336e419215a8b7269c4
