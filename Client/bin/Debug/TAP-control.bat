@@ -1,1 +1,0 @@
-powershell -Command "Start-Process AddTAP6.bat -Verb RunAs"

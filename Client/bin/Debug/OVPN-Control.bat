@@ -1,1 +1,0 @@
-powershell -Command "Start-Process killOVPN.bat -Verb RunAs"

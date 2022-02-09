@@ -1,1 +1,0 @@
-"C:\Program Files (x86)\OVPN-Driver\OpenVPN\bin\tapctl.exe" create --hwid root\tap0901
