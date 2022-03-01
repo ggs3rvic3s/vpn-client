@@ -41,6 +41,8 @@ namespace Client
 
         private void btn_Login_Click(object sender, EventArgs e)
         {
+            auth_cs.auth_cs.EmailTXT = txt_Email.Text;
+            auth_cs.auth_cs.PasswordTXT = txt_Password.Text;
             var request = (HttpWebRequest)WebRequest.Create("https://auth.ggs-network.de/auth/login");
 
             var postData = "mail=" + Uri.EscapeDataString(txt_Email.Text);
@@ -75,7 +77,11 @@ namespace Client
                     auth_cs.auth_cs.user_session = outputJson.user.session;
                     auth_cs.auth_cs.user_admin = outputJson.user.admin;
                     auth_cs.auth_cs.user_verified = outputJson.user.verified;
+                    auth_cs.auth_cs.user_vpn_enable = outputJson.user.vpn_enable;
                     auth_cs.auth_cs.user_join_time = outputJson.user.joinned_time;
+
+                    string[] authJson = { "{", $"    \"username\"=\"{auth_cs.auth_cs.user_username}\"", $"    \"email\"=\"{auth_cs.auth_cs.user_email}\"", $"    \"token\"=\"{auth_cs.auth_cs.token}\"", "}" };
+                    File.WriteAllLines($@"{AppData_cs.AppData_cs.AppDataPath}\account.json", authJson);
 
                     MessageBox.Show($"{outputJson.msg}", "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Wallpaper.Ctlcontrols.stop();

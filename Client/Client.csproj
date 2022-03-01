@@ -32,7 +32,7 @@
     <UpdateUrl>https://assets.ggs-network.de/</UpdateUrl>
     <ProductName>VPN-Client</ProductName>
     <PublisherName>VPN Client by GGS-Network</PublisherName>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>4.1.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -170,6 +170,7 @@
     <Compile Include="assets\auth.cs" />
     <Compile Include="assets\config.cs" />
     <Compile Include="assets\assets.cs" />
+    <Compile Include="assets\handler.cs" />
     <Compile Include="assets\lang.cs" />
     <Compile Include="assets\licence.cs" />
     <Compile Include="assets\vpn.cs" />
@@ -185,6 +186,12 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
     <Compile Include="SplashScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +206,9 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </EmbeddedResource>
@@ -212,6 +222,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="Client_TemporaryKey.pfx" />
+    <None Include="content\toastr.less" />
+    <None Include="content\toastr.scss" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -248,6 +260,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="1024x1024.ico" />
+    <Content Include="content\toastr.css" />
+    <Content Include="content\toastr.min.css" />
+    <Content Include="Scripts\jquery-1.6.3-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.6.3.js" />
+    <Content Include="Scripts\jquery-1.6.3.min.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

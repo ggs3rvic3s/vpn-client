@@ -36,6 +36,10 @@
             this.webTimer = new System.Windows.Forms.Timer(this.components);
             this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.materialCard1 = new MaterialSkin.Controls.MaterialCard();
+            this.btn_reload = new MaterialSkin.Controls.MaterialButton();
+            this.btn_settings = new MaterialSkin.Controls.MaterialButton();
+            this.btn_managed_account = new MaterialSkin.Controls.MaterialButton();
+            this.label_joinedsince = new MaterialSkin.Controls.MaterialLabel();
             this.label_user_email = new MaterialSkin.Controls.MaterialLabel();
             this.label_user_username = new MaterialSkin.Controls.MaterialLabel();
             this.webBrowserProfile = new System.Windows.Forms.WebBrowser();
@@ -45,8 +49,6 @@
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.Wallpaper = new AxWMPLib.AxWindowsMediaPlayer();
             this.WallpaperAudio = new AxWMPLib.AxWindowsMediaPlayer();
-            this.label_joinedsince = new MaterialSkin.Controls.MaterialLabel();
-            this.btn_managed_account = new MaterialSkin.Controls.MaterialButton();
             this.materialCard1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Wallpaper)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.WallpaperAudio)).BeginInit();
@@ -106,7 +108,7 @@
             // 
             // webTimer
             // 
-            this.webTimer.Interval = 500;
+            this.webTimer.Interval = 300;
             this.webTimer.Tick += new System.EventHandler(this.webTimer_Tick);
             // 
             // webBrowser
@@ -121,6 +123,8 @@
             // materialCard1
             // 
             this.materialCard1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialCard1.Controls.Add(this.btn_reload);
+            this.materialCard1.Controls.Add(this.btn_settings);
             this.materialCard1.Controls.Add(this.btn_managed_account);
             this.materialCard1.Controls.Add(this.label_joinedsince);
             this.materialCard1.Controls.Add(this.label_user_email);
@@ -140,6 +144,78 @@
             this.materialCard1.Padding = new System.Windows.Forms.Padding(14);
             this.materialCard1.Size = new System.Drawing.Size(301, 553);
             this.materialCard1.TabIndex = 7;
+            // 
+            // btn_reload
+            // 
+            this.btn_reload.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btn_reload.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btn_reload.Depth = 0;
+            this.btn_reload.HighEmphasis = true;
+            this.btn_reload.Icon = null;
+            this.btn_reload.Location = new System.Drawing.Point(10, 430);
+            this.btn_reload.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btn_reload.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btn_reload.Name = "btn_reload";
+            this.btn_reload.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btn_reload.Size = new System.Drawing.Size(77, 36);
+            this.btn_reload.TabIndex = 8;
+            this.btn_reload.Text = "Reload";
+            this.btn_reload.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btn_reload.UseAccentColor = false;
+            this.btn_reload.UseVisualStyleBackColor = true;
+            this.btn_reload.Click += new System.EventHandler(this.btn_reload_Click);
+            // 
+            // btn_settings
+            // 
+            this.btn_settings.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btn_settings.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btn_settings.Depth = 0;
+            this.btn_settings.HighEmphasis = true;
+            this.btn_settings.Icon = null;
+            this.btn_settings.Location = new System.Drawing.Point(175, 478);
+            this.btn_settings.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btn_settings.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btn_settings.Name = "btn_settings";
+            this.btn_settings.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btn_settings.Size = new System.Drawing.Size(90, 36);
+            this.btn_settings.TabIndex = 9;
+            this.btn_settings.Text = "Settings";
+            this.btn_settings.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btn_settings.UseAccentColor = false;
+            this.btn_settings.UseVisualStyleBackColor = true;
+            this.btn_settings.Click += new System.EventHandler(this.btn_settings_Click);
+            // 
+            // btn_managed_account
+            // 
+            this.btn_managed_account.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btn_managed_account.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btn_managed_account.Depth = 0;
+            this.btn_managed_account.HighEmphasis = true;
+            this.btn_managed_account.Icon = null;
+            this.btn_managed_account.Location = new System.Drawing.Point(12, 478);
+            this.btn_managed_account.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btn_managed_account.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btn_managed_account.Name = "btn_managed_account";
+            this.btn_managed_account.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btn_managed_account.Size = new System.Drawing.Size(155, 36);
+            this.btn_managed_account.TabIndex = 8;
+            this.btn_managed_account.Text = "Manage Account";
+            this.btn_managed_account.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btn_managed_account.UseAccentColor = false;
+            this.btn_managed_account.UseVisualStyleBackColor = true;
+            this.btn_managed_account.Click += new System.EventHandler(this.btn_managed_account_Click);
+            // 
+            // label_joinedsince
+            // 
+            this.label_joinedsince.AutoSize = true;
+            this.label_joinedsince.Depth = 0;
+            this.label_joinedsince.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.label_joinedsince.Location = new System.Drawing.Point(17, 382);
+            this.label_joinedsince.MouseState = MaterialSkin.MouseState.HOVER;
+            this.label_joinedsince.Name = "label_joinedsince";
+            this.label_joinedsince.Size = new System.Drawing.Size(25, 19);
+            this.label_joinedsince.TabIndex = 7;
+            this.label_joinedsince.Text = "???";
             // 
             // label_user_email
             // 
@@ -242,38 +318,6 @@
             this.WallpaperAudio.Size = new System.Drawing.Size(258, 104);
             this.WallpaperAudio.TabIndex = 1;
             // 
-            // label_joinedsince
-            // 
-            this.label_joinedsince.AutoSize = true;
-            this.label_joinedsince.Depth = 0;
-            this.label_joinedsince.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.label_joinedsince.Location = new System.Drawing.Point(17, 382);
-            this.label_joinedsince.MouseState = MaterialSkin.MouseState.HOVER;
-            this.label_joinedsince.Name = "label_joinedsince";
-            this.label_joinedsince.Size = new System.Drawing.Size(25, 19);
-            this.label_joinedsince.TabIndex = 7;
-            this.label_joinedsince.Text = "???";
-            // 
-            // btn_managed_account
-            // 
-            this.btn_managed_account.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btn_managed_account.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btn_managed_account.Depth = 0;
-            this.btn_managed_account.HighEmphasis = true;
-            this.btn_managed_account.Icon = null;
-            this.btn_managed_account.Location = new System.Drawing.Point(12, 478);
-            this.btn_managed_account.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btn_managed_account.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btn_managed_account.Name = "btn_managed_account";
-            this.btn_managed_account.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btn_managed_account.Size = new System.Drawing.Size(158, 36);
-            this.btn_managed_account.TabIndex = 8;
-            this.btn_managed_account.Text = "Manage Account";
-            this.btn_managed_account.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btn_managed_account.UseAccentColor = false;
-            this.btn_managed_account.UseVisualStyleBackColor = true;
-            this.btn_managed_account.Click += new System.EventHandler(this.btn_managed_account_Click);
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -321,5 +365,7 @@
         private MaterialSkin.Controls.MaterialLabel label_user_email;
         private MaterialSkin.Controls.MaterialLabel label_joinedsince;
         private MaterialSkin.Controls.MaterialButton btn_managed_account;
+        private MaterialSkin.Controls.MaterialButton btn_settings;
+        private MaterialSkin.Controls.MaterialButton btn_reload;
     }
 }

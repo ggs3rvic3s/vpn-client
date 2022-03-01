@@ -12,14 +12,6 @@ namespace assets_cs
 {
     internal class assets_cs
     {
-        public static void error(bool error, string ex)
-        {
-            MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            if ((error == true))
-            {
-                Application.Exit();
-            }
-        }
         public static void checkVersion(string version)
         {
             MessageBox.Show(config_cs.config_cs.Client_Version, config_cs.config_cs.Client_GUID);
@@ -29,7 +21,7 @@ namespace assets_cs
             }
             else
             {
-                MessageBox.Show("Old version of this client is installed. Please restart the client to update it!", "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Old version of this client is installed. Please restart the client to update it!", "VPN Client by GGS-Network - assets_cs", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
         }

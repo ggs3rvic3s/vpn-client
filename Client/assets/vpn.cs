@@ -1,24 +1,25 @@
-﻿//System
+﻿//External NuGet
+using Newtonsoft.Json;
+using BCrypt.Net;
+
+//System
 using System;
-using System.Diagnostics;
-using System.IO;
 using System.Text;
+using System.IO;
+using System.Net;
 using System.Windows.Forms;
+using System.Diagnostics;
 using System.Threading;
 
 namespace vpn_cs
 {
     internal class vpn_cs
     {
-        static string first;
-        static string second;
-
-        static string fullPath;
         public static void connect()
         {
             try
             {
-                File.Move($@"{vpn_cs.fullPath}\client.ovpn", $@"{config_cs.config_cs.sysPath}\client.ovpn");
+                File.Move($@"{AppData_cs.AppData_cs.AppDataPath}\client.ovpn", $@"{config_cs.config_cs.sysPath}\client.ovpn");
                 Process process = new Process();
                 ProcessStartInfo startInfo = new ProcessStartInfo();
                 startInfo.WindowStyle = ProcessWindowStyle.Hidden;
@@ -30,19 +31,17 @@ namespace vpn_cs
                 Thread.Sleep(200);
                 try
                 {
-                    Directory.Delete($@"C:\Users\{config_cs.config_cs.sysUsername}\AppData\Local\Temp\{first}");
-                    Directory.Delete($@"C:\Users\{config_cs.config_cs.sysUsername}\AppData\Local\Temp\{first}\{second}");
-
                     File.Delete($@"{config_cs.config_cs.sysPath}\client.ovpn");
-                    File.Delete($@"{fullPath}\client.ovpn");
+                    File.Delete($@"{AppData_cs.AppData_cs.AppDataPath}\client.ovpn");
                 }
                 catch (Exception ex)
-                { }
-                vpn_cs.fullPath = "";
+                { 
+
+                }
             }
             catch (Exception ex)
             {
-                assets_cs.assets_cs.error(false, ex.Message);
+                MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network - vpn_cs", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public static void disconnect()
@@ -55,46 +54,114 @@ namespace vpn_cs
                 startInfo.FileName = $@"OVPN-Control.bat";
                 process.StartInfo = startInfo;
                 process.Start();
+                try
+                {
+                    File.Delete($@"{config_cs.config_cs.sysPath}\client.ovpn");
+                    File.Delete($@"{AppData_cs.AppData_cs.AppDataPath}\client.ovpn");
+                }
+                catch (Exception ex)
+                {
+
+                }
             }
             catch (Exception ex)
             {
-                assets_cs.assets_cs.error(false, ex.Message);
+                MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network - vpn_cs", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public static void ovpnProfile()
         {
-            first = createPath(7);
-            second = createPath(7);
-            fullPath = $@"C:\Users\{config_cs.config_cs.sysUsername}\AppData\Local\Temp\{first}\{second}";
-            MessageBox.Show($"{fullPath}");
-            try
+            if (auth_cs.auth_cs.user_vpn_enable == 1)
             {
-                Directory.CreateDirectory($@"C:\Users\{config_cs.config_cs.sysUsername}\AppData\Local\Temp\{first}");
-                Directory.CreateDirectory($@"C:\Users\{config_cs.config_cs.sysUsername}\AppData\Local\Temp\{first}\{second}");
                 try
                 {
-                    config_cs.config_cs.webClient.DownloadFile("https://assets.ggs-network.de/download.php?path=ggs-networkde.ovpn", $@"{fullPath}\client.ovpn");
+                    var request = (HttpWebRequest)WebRequest.Create("https://auth.ggs-network.de/auth/ovpn");
+
+                    var postData = "mail=" + Uri.EscapeDataString(auth_cs.auth_cs.EmailTXT);
+                    postData += "&password=" + Uri.EscapeDataString(auth_cs.auth_cs.PasswordTXT);
+                    var data = Encoding.ASCII.GetBytes(postData);
+
+                    request.Method = "POST";
+                    request.ContentType = "application/x-www-form-urlencoded";
+                    request.ContentLength = data.Length;
+
+                    using (var stream = request.GetRequestStream())
+                    {
+                        stream.Write(data, 0, data.Length);
+                    }
+                    try
+                    {
+                        var response = (HttpWebResponse)request.GetResponse();
+
+                        var responseString = new StreamReader(response.GetResponseStream());
+                        string ovpnFile = responseString.ReadToEnd();
+                        responseString.Close();
+
+                        try
+                        {
+                            File.Delete($@"{AppData_cs.AppData_cs.AppDataPath}\client.ovpn");
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                        var sw = new StreamWriter($@"{AppData_cs.AppData_cs.AppDataPath}\client.ovpn", false);
+                        sw.Write(ovpnFile);
+                        sw.Flush();
+                        sw.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network - vpn_cs", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 catch (Exception ex)
                 {
-                    assets_cs.assets_cs.error(false, ex.Message);
+                    MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network - vpn_cs", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch(Exception ex)
+            else
             {
-                assets_cs.assets_cs.error(false, ex.Message);
+                MessageBox.Show($"Please generate a VPN Profile! Home => Settings => Generate VPN Profile", "VPN Client by GGS-Network - auth_cs", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
-        public static string createPath(int length)
+
+        public static void genProfile()
         {
-            const string valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-            StringBuilder res = new StringBuilder();
-            Random rnd = new Random();
-            while (0 < length--)
+            var request = (HttpWebRequest)WebRequest.Create("https://auth.ggs-network.de/auth/create");
+
+            var postData = "mail=" + Uri.EscapeDataString(auth_cs.auth_cs.EmailTXT);
+            postData += "&password=" + Uri.EscapeDataString(auth_cs.auth_cs.PasswordTXT);
+            var data = Encoding.ASCII.GetBytes(postData);
+
+            request.Method = "POST";
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentLength = data.Length;
+
+            using (var stream = request.GetRequestStream())
             {
-                res.Append(valid[rnd.Next(valid.Length)]);
+                stream.Write(data, 0, data.Length);
             }
-            return res.ToString();
+            try
+            {
+                var response = (HttpWebResponse)request.GetResponse();
+
+                var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                dynamic outputJson = JsonConvert.DeserializeObject(responseString);
+
+                if (outputJson.success == true)
+                {
+                    MessageBox.Show($"VPN Profile successful generated!", "VPN Client by GGS-Network - auth_cs", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                if (outputJson.success == false)
+                {
+                    MessageBox.Show($"{outputJson.msg}", "VPN Client by GGS-Network - auth_cs", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network - vpn_cs", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

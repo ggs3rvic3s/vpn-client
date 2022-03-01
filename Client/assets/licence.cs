@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Net;
+using System.Windows.Forms;
 
 namespace licence_cs
 {
@@ -23,7 +24,7 @@ namespace licence_cs
                     }
                     else
                     {
-
+                        Application.Exit();
                     }
                 }
             }

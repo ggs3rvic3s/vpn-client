@@ -14,6 +14,8 @@ namespace auth_cs
 {
     internal class auth_cs
     {
+        public static string EmailTXT;
+        public static string PasswordTXT;
 
         //Put json ouput in strings
         public static string token;
@@ -27,6 +29,7 @@ namespace auth_cs
         public static string user_session;
         public static int user_admin;
         public static int user_verified;
+        public static int user_vpn_enable;
         public static string user_join_time;
 
         public static bool verfiedCredentials = false;
@@ -34,9 +37,10 @@ namespace auth_cs
         public static int failLoad;
         public static void reloadProfile()
         {
-            var request = (HttpWebRequest)WebRequest.Create("https://auth.ggs-network.de/auth/get-user");
+            var request = (HttpWebRequest)WebRequest.Create("https://auth.ggs-network.de/auth/login");
 
-            var postData = "token=" + Uri.EscapeDataString(auth_cs.token);
+            var postData = "mail=" + Uri.EscapeDataString(auth_cs.EmailTXT);
+            postData += "&password=" + Uri.EscapeDataString(auth_cs.PasswordTXT);
             var data = Encoding.ASCII.GetBytes(postData);
 
             request.Method = "POST";
@@ -57,59 +61,28 @@ namespace auth_cs
                 if (outputJson.success == true)
                 {
                     auth_cs.token = outputJson.token;
-                    auth_cs.user_id = outputJson.data.id;
-                    auth_cs.user_firstName = outputJson.data.firstName;
-                    auth_cs.user_lastName = outputJson.data.lastName;
-                    auth_cs.user_profilePicture = outputJson.data.profilePicture;
-                    auth_cs.user_username = outputJson.data.username;
-                    auth_cs.user_email = outputJson.data.email;
-                    auth_cs.user_password = outputJson.data.password;
-                    auth_cs.user_session = outputJson.data.session;
-                    auth_cs.user_admin = outputJson.data.admin;
-                    auth_cs.user_verified = outputJson.data.verified;
-                    auth_cs.user_join_time = outputJson.data.joinned_time;
+                    auth_cs.user_id = outputJson.user.id;
+                    auth_cs.user_firstName = outputJson.user.firstName;
+                    auth_cs.user_lastName = outputJson.user.lastName;
+                    auth_cs.user_profilePicture = outputJson.user.profilePicture;
+                    auth_cs.user_username = outputJson.user.username;
+                    auth_cs.user_email = outputJson.user.email;
+                    auth_cs.user_password = outputJson.user.password;
+                    auth_cs.user_session = outputJson.user.session;
+                    auth_cs.user_admin = outputJson.user.admin;
+                    auth_cs.user_verified = outputJson.user.verified;
+                    auth_cs.user_vpn_enable = outputJson.user.vpn_enable;
+                    auth_cs.user_join_time = outputJson.user.joinned_time;
+
                 }
                 if (outputJson.success == false)
                 {
-                    var request2 = (HttpWebRequest)WebRequest.Create("https://auth.ggs-network.de/auth/login");
-
-                    var postData2 = "mail=" + Uri.EscapeDataString(auth_cs.user_email);
-                    postData2 += "&password=" + Uri.EscapeDataString(auth_cs.user_password);
-                    var data2 = Encoding.ASCII.GetBytes(postData2);
-
-                    request2.Method = "POST";
-                    request2.ContentType = "application/x-www-form-urlencoded";
-                    request2.ContentLength = data2.Length;
-
-                    using (var stream2 = request2.GetRequestStream())
-                    {
-                        stream2.Write(data2, 0, data2.Length);
-                    }
-                    try
-                    {
-                        var response2 = (HttpWebResponse)request.GetResponse();
-
-                        var responseString2 = new StreamReader(response.GetResponseStream()).ReadToEnd();
-                        dynamic outputJson2 = JsonConvert.DeserializeObject(responseString2);
-
-                        if (outputJson.success == true)
-                        {
-                            auth_cs.token = outputJson2.token;
-                        }
-                        if (outputJson.success == false)
-                        {
-                            MessageBox.Show($"{outputJson.msg}", "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("ERROR:" + ex.Message, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    MessageBox.Show($"{outputJson.msg}", "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR:" + ex.Message, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ERROR:" + ex, "VPN Client by GGS-Network", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
